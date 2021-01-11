@@ -2,7 +2,7 @@ import './App.css';
 import Header from './layout/header/Header';
 import Nav from './layout/nav/Nav';
 import Footer from './layout/footer/Footer';
-import Resources from './resources/Resources';
+import ResourcesPanel from './resourcesPanel/ResourcesPanel';
 import Swapi from './swapi/Swapi';
 import {
   BrowserRouter as Router,
@@ -19,13 +19,13 @@ function App() {
         <main className="container my-5">
           <Switch>
             <Route path="/home">
-              <Resources />
+              <ResourcesPanel />
             </Route>
             <Route path="/swapi">
               <Swapi />
             </Route>
             <Route path="">
-              <Resources />
+              <ResourcesPanel />
             </Route>
           </Switch>
         </main>

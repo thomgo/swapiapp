@@ -1,14 +1,14 @@
 import React from "react";
 import Axios from "axios";
-import Error from "./../error/Error";
+import Error from "../error/Error";
+import Resource from "./resource/Resource";
 
-class Resources extends React.Component {
+class ResourcesPanel extends React.Component {
     constructor(props) {
         super(props);
         this.baseUrl = "https://swapi.dev/api/";
         // Stocke les différents états de la requête vers Swapi et le message du composant Character
         this.state = {
-            data: null,
             resourcesList: null,
             error: null,
             isLoaded: false,
@@ -20,36 +20,30 @@ class Resources extends React.Component {
         // On lance la requête et selon le résultat on met à jour l'état du composant
         Axios.get(this.baseUrl)
         .then((response) => {
-            this.setState({
-                data: response.data,
-                isLoaded: true,
-                error: null,
-                message: null
-            });
-            this.makeResourcesList();
+            // On génére la liste de composants ressources
+            this.makeResourcesList(response.data);
         })
         .catch((error) => {
             this.setState({
                 error: error,
                 isLoaded: true,
-                data: null,
                 resourcesList: null,
-                message: "Un problème est survenu, nous ne parvenons pas à récupérer les donnéess"
+                message: "Un problème est survenu, nous ne parvenons pas à récupérer les données"
             });
         })
     }
 
-    makeResourcesList = () => {
-        const resourcesList = Object.keys(this.state.data).map((resource, index) =>
-            <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={index}>
-                <div className="alert bg-dark my-3 py-5 text-center" role="alert">
-                    <a  className="text-warning" href="">
-                        {resource}
-                    </a>
-                </div>
-            </div>
+    // Génère une liste de composant ressources sur la base des données reçues de l'API
+    makeResourcesList = (data) => {
+        const resourcesList = Object.keys(data).map((resourceName, index) =>
+            <Resource index={index} resourceName={resourceName}/>
         );
-        this.setState({ resourcesList : resourcesList });
+        this.setState({ 
+            resourcesList : resourcesList,
+            isLoaded: true,
+            error: null,
+            message: null 
+        });
     }
 
     componentDidMount() {
@@ -80,4 +74,4 @@ class Resources extends React.Component {
     }
 }
 
-export default Resources;
+export default ResourcesPanel;
