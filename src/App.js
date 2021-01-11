@@ -3,11 +3,13 @@ import Header from './layout/header/Header';
 import Nav from './layout/nav/Nav';
 import Footer from './layout/footer/Footer';
 import ResourcesPanel from './resourcesPanel/ResourcesPanel';
+import ResourceDetail from './resourceDetail/ResourceDetail';
 import Swapi from './swapi/Swapi';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useParams
 } from "react-router-dom";
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
             </Route>
             <Route path="/swapi">
               <Swapi />
+            </Route>
+            <Route path="/resource/:resourceName" component={ResourceDetail}>
             </Route>
             <Route path="">
               <ResourcesPanel />
