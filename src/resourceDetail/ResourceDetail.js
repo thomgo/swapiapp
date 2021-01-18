@@ -1,65 +1,74 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Axios from "axios";
 import Error from "../error/Error";
+import {useParams} from "react-router-dom";
 
-class ResourceDetail extends React.Component {
-    constructor(props) {
-        super(props);
-        this.baseUrl = "https://swapi.dev/api/";
-        this.resourceName = this.props.match.params.resourceName 
-        // Stocke les différents états de la requête vers Swapi et le message du composant Character
-        this.state = {
-            resourcesList: null,
+function ResourceDetail () {
+    const {resourceName} = useParams();
+    const baseUrl = "https://swapi.dev/api/" + resourceName + "/";
+
+    const [response, setResponse] = useState(
+        {
+            entriesList: null,
             error: null,
             isLoaded: false,
             message: "Chargement en cours"
-        };
-    }
+        }
+    )
 
-    getResource= () => {
+    function getResource() {
         // On lance la requête et selon le résultat on met à jour l'état du composant
-        Axios.get(this.baseUrl)
+        Axios.get(baseUrl)
         .then((response) => {
             // On génére la liste de composants ressources
             console.log(response.data);
+            makeEntiresList(response.data["results"])
         })
         .catch((error) => {
-            this.setState({
+            setResponse({
                 error: error,
                 isLoaded: true,
-                resourcesList: null,
-                message: "Un problème est survenu, nous ne parvenons pas à récupérer les données"
+                message: "Un problème est survenu, nous ne parvenons pas à récupérer les données "
             });
         })
     }
 
-    componentDidMount() {
-        this.getResource();
+    function makeEntiresList(data) {
+        const entriesList = data.map((value, index) =>
+            <li key={index} className="list-group-item bg-dark border-bottom border-secondary"><a className="text-warning" href="">{value[Object.keys(value)[0]]}</a></li>
+        );
+        setResponse({ 
+            entriesList : entriesList,
+            isLoaded: true,
+            error: null,
+            message: null 
+        });
     }
 
-    render() {
-        if(this.state.isLoaded) {
-            if(this.state.error) {
+    useEffect(() => {
+            getResource();
+      }, []);
+
+      if(response["isLoaded"]) {
+            if(response["error"]) {
                 return(
-                    <Error message={this.state.message} />
+                    <Error message={response["message"]} />
                 );
             }
             else {
                 return(
                     <section>
-                        <h2>Détail d'une ressource</h2>
-                        <div className="row">
-                        </div>
+                        <h2>Detail of the {resourceName} resource</h2>
+                        <ul className="list-group">
+                            {response["entriesList"]}
+                        </ul>
                     </section>
                 ); 
             } 
         }
         return (
-            // <p>{this.state.message}</p>
-            <p>{this.resourceName}</p>
-
+            <p>{response["message"]}</p>
         );  
-    }
 }
 
 export default ResourceDetail;

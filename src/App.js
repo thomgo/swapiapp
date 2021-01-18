@@ -9,7 +9,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams
 } from "react-router-dom";
 
 function App() {
@@ -26,7 +25,7 @@ function App() {
             <Route path="/swapi">
               <Swapi />
             </Route>
-            <Route path="/resource/:resourceName" component={ResourceDetail}>
+            <Route path="/resource/:resourceName" children={<ResourceDetail />}>
             </Route>
             <Route path="">
               <ResourcesPanel />
