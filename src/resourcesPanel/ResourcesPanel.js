@@ -60,7 +60,7 @@ class ResourcesPanel extends React.Component {
             else {
                 return(
                     <section>
-                        <h2>Bienvenue sur notre Application react</h2>
+                        <h2>Click and start to explore !</h2>
                         <div className="row">
                             {this.state.resourcesList}
                         </div>

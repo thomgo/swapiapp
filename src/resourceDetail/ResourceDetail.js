@@ -4,9 +4,12 @@ import Error from "../error/Error";
 import {useParams} from "react-router-dom";
 
 function ResourceDetail () {
+    // On récupère le paramètre d'url resourceName défini dans App.js à l'aide du hook propre au routeur useParams()
     const {resourceName} = useParams();
+    // On défini l'url de base à requêter composée à l'aide du paramètre d'url
     const baseUrl = "https://swapi.dev/api/" + resourceName + "/";
-
+    // On défini une variable response qui est équivalent aux états dans les classes, on défini également une fonction pour la modifier
+    // Pour utiliser les états on fait appel au hook useState auquel on passe par défaut un objet qui est stocké dans response
     const [response, setResponse] = useState(
         {
             entriesList: null,
@@ -21,7 +24,6 @@ function ResourceDetail () {
         Axios.get(baseUrl)
         .then((response) => {
             // On génére la liste de composants ressources
-            console.log(response.data);
             makeEntiresList(response.data["results"])
         })
         .catch((error) => {
@@ -33,9 +35,12 @@ function ResourceDetail () {
         })
     }
 
+    // Function qui génère la liste des entrées d'une ressource demandée dans l'url et stocke les information dans la variable response
     function makeEntiresList(data) {
         const entriesList = data.map((value, index) =>
-            <li key={index} className="list-group-item bg-dark border-bottom border-secondary"><a className="text-warning" href="">{value[Object.keys(value)[0]]}</a></li>
+            <li key={index} className="list-group-item bg-dark border-bottom border-secondary">
+                <a className="text-warning" href="">{value[Object.keys(value)[0]]}</a>
+            </li>
         );
         setResponse({ 
             entriesList : entriesList,
@@ -45,10 +50,12 @@ function ResourceDetail () {
         });
     }
 
+    // Ce hook est appelé à chaque modification de l'UI, ici il remplace componentDidMount() des classes
     useEffect(() => {
             getResource();
       }, []);
 
+      // A la fin de la fonction on gére les différents affichages
       if(response["isLoaded"]) {
             if(response["error"]) {
                 return(

@@ -1,7 +1,7 @@
 function Footer() {
     return(
         <header className="bg-dark text-white p-5 text-center mt-0 mb-0">
-            <p>Réalisation d'un atelir react JS</p>
+            <p>A sample app to help the students understand React and the REST API</p>
         </header>
     );
 }
