@@ -3,6 +3,7 @@ import Axios from "axios";
 import Error from "../error/Error";
 import {useParams} from "react-router-dom";
 import Pagination from "./pagination/Pagination";
+import List from "./list/List";
 
 function ResourceDetail () {
     // On récupère le paramètre d'url resourceName défini dans App.js à l'aide du hook propre au routeur useParams()
@@ -13,9 +14,7 @@ function ResourceDetail () {
     // Pour utiliser les états on fait appel au hook useState auquel on passe par défaut un objet qui est stocké dans response
     const [response, setResponse] = useState(
         {
-            entriesList: null,
-            next: null,
-            previous: null,
+            data: null,
             error: null,
             isLoaded: false,
             message: "Chargement en cours"
@@ -26,33 +25,21 @@ function ResourceDetail () {
         // On lance la requête et selon le résultat on met à jour l'état du composant
         Axios.get(baseUrl)
         .then((response) => {
-            // On génére la liste de composants ressources
-            makeEntiresList(response.data)
+            setResponse({ 
+                data: response.data,
+                isLoaded: true,
+                error: null,
+                message: null 
+            });
         })
         .catch((error) => {
             setResponse({
+                data: null,
                 error: error,
                 isLoaded: true,
                 message: "Un problème est survenu, nous ne parvenons pas à récupérer les données "
             });
         })
-    }
-
-    // Function qui génère la liste des entrées d'une ressource demandée dans l'url et stocke les information dans la variable response
-    function makeEntiresList(data) {
-        const entriesList = data["results"].map((value, index) =>
-            <li key={index} className="list-group-item bg-dark border-bottom border-secondary">
-                <a className="text-warning" href="">{value[Object.keys(value)[0]]}</a>
-            </li>
-        );
-        setResponse({ 
-            entriesList : entriesList,
-            next: data.next,
-            previous: data.previous,
-            isLoaded: true,
-            error: null,
-            message: null 
-        });
     }
 
     // Ce hook est appelé à chaque modification de l'UI, ici il remplace componentDidMount() des classes
@@ -73,10 +60,8 @@ function ResourceDetail () {
                 return(
                     <section>
                         <h2>Detail of the {resourceName} resource</h2>
-                        <ul className="list-group">
-                            {response["entriesList"]}
-                        </ul>
-                        <Pagination resourceName={resourceName} page={page} next={response.next} previous={response.previous}/>
+                        <List entries={response.data.results}/>
+                        <Pagination resourceName={resourceName} page={page} next={response.data.next} previous={response.data.previous}/>
                     </section>
                 ); 
             } 
