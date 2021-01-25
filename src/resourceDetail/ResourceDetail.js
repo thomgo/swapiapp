@@ -56,6 +56,8 @@ function ResourceDetail () {
     }
 
     // Ce hook est appelé à chaque modification de l'UI, ici il remplace componentDidMount() des classes
+    // Notez qu'on passe en paramètre la variable à traquer, dès qu'elle change useEffect est appelé, si tableau vide la fonction n'est appelée qu'une fois
+    // Ici c'est la page qui peut éventuellement être modifiée en cliquant sur les boutons
     useEffect(() => {
             getResource();
       }, [page]);
