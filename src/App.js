@@ -25,8 +25,7 @@ function App() {
             <Route path="/swapi">
               <Swapi />
             </Route>
-            <Route path="/resource/:resourceName" children={<ResourceDetail />}>
-            </Route>
+            <Route path="/resource/:resourceName/page/:page" children={<ResourceDetail />} />
             <Route path="">
               <ResourcesPanel />
             </Route>
