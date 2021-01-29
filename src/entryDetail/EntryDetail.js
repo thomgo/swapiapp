@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import EntryCard from "./entryCard/EntryCard";
 
 function EntryDetail() {
-
+    // On construit l'url à requêter à l'aide des paramètre de l'url
     const {resourceName, id} = useParams();
     const baseUrl = "https://swapi.dev/api/" + resourceName + "/" + id + "/";
     const [response, setResponse] = useState(
