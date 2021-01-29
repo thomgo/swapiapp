@@ -6,7 +6,7 @@ import Pagination from "./pagination/Pagination";
 import List from "./list/List";
 
 function ResourceDetail () {
-    // On récupère le paramètre d'url resourceName défini dans App.js à l'aide du hook propre au routeur useParams()
+    // On récupère les paramètres d'url resourceName et page définis dans App.js à l'aide du hook propre au routeur useParams()
     const {resourceName, page} = useParams();
     // On défini l'url de base à requêter composée à l'aide du paramètre d'url
     const baseUrl = "https://swapi.dev/api/" + resourceName + "/?page=" + page;
@@ -50,25 +50,25 @@ function ResourceDetail () {
       }, [page]);
 
       // A la fin de la fonction on gére les différents affichages
-      if(response["isLoaded"]) {
-            if(response["error"]) {
-                return(
-                    <Error message={response["message"]} />
-                );
-            }
-            else {
-                return(
-                    <section>
-                        <h2>Detail of the {resourceName} resource</h2>
-                        <List entries={response.data.results}/>
-                        <Pagination resourceName={resourceName} page={page} next={response.data.next} previous={response.data.previous}/>
-                    </section>
-                ); 
-            } 
+    if(response["isLoaded"]) {
+        if(response["error"]) {
+            return(
+                <Error message={response["message"]} />
+            );
         }
-        return (
-            <p>{response["message"]}</p>
-        );  
+        else {
+            return(
+                <section>
+                    <h2>Detail of the {resourceName} resource</h2>
+                    <List entries={response.data.results}/>
+                    <Pagination resourceName={resourceName} page={page} next={response.data.next} previous={response.data.previous}/>
+                </section>
+            ); 
+        } 
+    }
+    return (
+        <p>{response["message"]}</p>
+    );  
 }
 
 export default ResourceDetail;
