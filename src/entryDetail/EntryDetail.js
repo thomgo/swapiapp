@@ -8,7 +8,6 @@ function EntryDetail() {
 
     const {resourceName, id} = useParams();
     const baseUrl = "https://swapi.dev/api/" + resourceName + "/" + id + "/";
-    console.log(baseUrl);
     const [response, setResponse] = useState(
         {
             data: null,
@@ -41,7 +40,6 @@ function EntryDetail() {
 
     useEffect(() => {
         getResource();
-        console.log(response.data);
     }, []);
 
     if(response["isLoaded"]) {
