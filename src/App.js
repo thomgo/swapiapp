@@ -4,6 +4,7 @@ import Nav from './layout/nav/Nav';
 import Footer from './layout/footer/Footer';
 import ResourcesPanel from './resourcesPanel/ResourcesPanel';
 import ResourceDetail from './resourceDetail/ResourceDetail';
+import EntryDetail from './entryDetail/EntryDetail';
 import Swapi from './swapi/Swapi';
 import {
   BrowserRouter as Router,
@@ -26,6 +27,7 @@ function App() {
               <Swapi />
             </Route>
             <Route path="/resource/:resourceName/page/:page" children={<ResourceDetail />} />
+            <Route path="/resource/:resourceName/:id" children={<EntryDetail />} />
             <Route path="">
               <ResourcesPanel />
             </Route>

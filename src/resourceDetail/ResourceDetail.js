@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import Axios from "axios";
 import Error from "../error/Error";
 import {useParams} from "react-router-dom";
@@ -60,7 +60,7 @@ function ResourceDetail () {
             return(
                 <section>
                     <h2>Detail of the {resourceName} resource</h2>
-                    <List entries={response.data.results}/>
+                    <List entries={response.data.results} resourceName={resourceName}/>
                     <Pagination resourceName={resourceName} page={page} next={response.data.next} previous={response.data.previous}/>
                 </section>
             ); 
