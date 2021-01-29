@@ -1,5 +1,5 @@
 function SubList(props) {
-    const subList = props.subEntry.map((value, index)=>
+    const subListItems = props.subEntry.map((value, index)=>
         <li key={index} className="bg-dark text-warning">
             {value}
         </li>
@@ -7,7 +7,7 @@ function SubList(props) {
 
     return (
         <ul>
-            {subList}
+            {subListItems}
         </ul>
     );
 }
