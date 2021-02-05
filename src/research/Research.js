@@ -3,7 +3,7 @@ import Axios from "axios";
 // Représente le formulaire de sélection d'un personnage
 import Selectform from "./selectform/Selectform";
 // Représente l'affichage d'un personnage ou d'un message
-import Character from "./character/Character";
+import Searchresult from "./searchresult/Searchresult";
 
 class Research extends React.Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class Research extends React.Component {
                 error: error,
                 isLoaded: true,
                 data: null,
-                message: "Nous n'avons pas réussi à récupérer la ressource"
+                message: "Nous n'avons pas réussi à récupérer la ressource, vérifiez que l'id existe"
             });
         })
     }
@@ -54,15 +54,13 @@ class Research extends React.Component {
     render() {
         return(
             <div>
-                <h2>Sélectionnez un personnage de Star Wars</h2>
+                <h2>Write an id for a character</h2>
                 <Selectform onChange={this.requestToSwapi}/>
                 <section className="my-5">
-                    <h3>Personnage sélectionné :</h3>
-                    <Character message={this.state.message} data={this.state.data}/>
+                    <h3>Selected character :</h3>
+                    <Searchresult message={this.state.message} data={this.state.data}/>
                 </section>
-
             </div>
-
         );
     }
 }

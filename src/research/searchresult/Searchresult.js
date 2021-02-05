@@ -1,7 +1,7 @@
 import React from "react";
 
 // Notons que ce composant aurait pu être fait sous forme de fonction car il ne gère pas d'état
-class Character extends React.Component {
+class Searchresult extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -42,4 +42,4 @@ class Character extends React.Component {
     }
 }
 
-export default Character;
+export default Searchresult;

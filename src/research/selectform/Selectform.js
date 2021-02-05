@@ -17,7 +17,7 @@ class Selectform extends React.Component {
         return (
             <div>
                 <form>
-                    <label htmlFor="selectCharacter" className="form-label">Indiquez l'id d'un personnage</label>
+                    <label htmlFor="selectCharacter" className="form-label">Write your id here</label>
                     <input id="selectCharacter" className="form-control w-50" type="text" onChange={this.handleChange}></input>
                 </form>
             </div>
