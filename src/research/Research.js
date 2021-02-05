@@ -5,7 +5,7 @@ import Selectform from "./selectform/Selectform";
 // Représente l'affichage d'un personnage ou d'un message
 import Character from "./character/Character";
 
-class Swapi extends React.Component {
+class Research extends React.Component {
     constructor(props) {
         super(props);
         // Stocke les différents états de la requête vers Swapi et le message du composant Character
@@ -67,4 +67,4 @@ class Swapi extends React.Component {
     }
 }
 
-export default Swapi;
+export default Research;

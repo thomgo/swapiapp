@@ -5,7 +5,7 @@ import Footer from './layout/footer/Footer';
 import ResourcesPanel from './resourcesPanel/ResourcesPanel';
 import ResourceDetail from './resourceDetail/ResourceDetail';
 import EntryDetail from './entryDetail/EntryDetail';
-import Swapi from './swapi/Swapi';
+import Research from './research/Research';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,8 +23,8 @@ function App() {
             <Route path="/home">
               <ResourcesPanel />
             </Route>
-            <Route path="/swapi">
-              <Swapi />
+            <Route path="/research">
+              <Research />
             </Route>
             <Route path="/resource/:resourceName/page/:page" children={<ResourceDetail />} />
             <Route path="/resource/:resourceName/detail" children={<EntryDetail />} />

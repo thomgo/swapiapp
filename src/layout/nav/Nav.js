@@ -7,7 +7,7 @@ function Nav() {
                 <Link to="/home" className="nav-link text-dark">Home</Link>
             </li>
             <li className="nav-item">
-                <Link to="/swapi" className="nav-link text-dark">Swapi</Link>
+                <Link to="/research" className="nav-link text-dark">Research</Link>
             </li>
         </ul>
     );
