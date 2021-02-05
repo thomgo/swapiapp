@@ -7,7 +7,15 @@ function List(props) {
 
     const entriesList = props.entries.map((value, index) =>
             <li key={index} className="list-group-item bg-dark border-bottom border-secondary">
-                <Link to={"/resource/" + props.resourceName + "/" + (index + 1)} className="text-warning" href="">
+                <Link 
+                    to={
+                        {
+                        pathname: "/resource/" + props.resourceName + "/detail",
+                        state: {detailurl: value.url}
+                        }
+                       } 
+                    className="text-warning" href=""
+                >
                     {value[Object.keys(value)[0]]}
                 </Link>
             </li>

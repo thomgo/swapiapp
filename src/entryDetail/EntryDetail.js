@@ -1,13 +1,12 @@
 import {useState, useEffect} from "react";
 import Axios from "axios";
 import Error from "../error/Error";
-import {useParams} from "react-router-dom";
+import {useParams, useLocation} from "react-router-dom";
 import EntryCard from "./entryCard/EntryCard";
 
 function EntryDetail() {
-    // On construit l'url à requêter à l'aide des paramètre de l'url
-    const {resourceName, id} = useParams();
-    const baseUrl = "https://swapi.dev/api/" + resourceName + "/" + id + "/";
+    // On récupère l'url à requêter passée dans les états de l'objet location dans list.js
+    const baseUrl = useLocation().state.detailurl;
     const [response, setResponse] = useState(
         {
             data: null,

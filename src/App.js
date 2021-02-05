@@ -27,7 +27,7 @@ function App() {
               <Swapi />
             </Route>
             <Route path="/resource/:resourceName/page/:page" children={<ResourceDetail />} />
-            <Route path="/resource/:resourceName/:id" children={<EntryDetail />} />
+            <Route path="/resource/:resourceName/detail" children={<EntryDetail />} />
             <Route path="">
               <ResourcesPanel />
             </Route>
