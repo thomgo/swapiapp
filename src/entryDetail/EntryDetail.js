@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import Axios from "axios";
 import Error from "../error/Error";
-import {useParams, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import EntryCard from "./entryCard/EntryCard";
 
 function EntryDetail() {

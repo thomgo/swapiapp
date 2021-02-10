@@ -1,14 +1,20 @@
 import React from "react";
 
-// Notons que ce composant aurait pu être fait sous forme de fonction car il ne gère pas d'état
 class Selectform extends React.Component {
     constructor(props) {
         super(props);
+        // On stocke dans un état une valeur par défaut pour le formulaire
+        this.state = {
+            value: 1
+        }
     }
 
     // Méthode qui permet de récupérer l'évènement et donc la valuer du formulaire tapée par l'utlisateur
     // On peut ensuite passer cette valeur à la méthode de requête vers Swapi qu'on a passée en propriété
     handleChange = (event) => {
+        this.setState({
+            value: event.target.value
+        })
         this.props.onChange(event.target.value);
     }
 
@@ -18,7 +24,7 @@ class Selectform extends React.Component {
             <div>
                 <form>
                     <label htmlFor="selectCharacter" className="form-label">Write your id here</label>
-                    <input id="selectCharacter" className="form-control w-50" type="text" onChange={this.handleChange}></input>
+                    <input id="selectCharacter" value={this.state.value} className="form-control w-50" type="text" onChange={this.handleChange}></input>
                 </form>
             </div>
         );

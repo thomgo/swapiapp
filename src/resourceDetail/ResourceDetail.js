@@ -10,7 +10,7 @@ function ResourceDetail () {
     const {resourceName, page} = useParams();
     // On défini l'url de base à requêter composée à l'aide du paramètre d'url
     const baseUrl = "https://swapi.dev/api/" + resourceName + "/?page=" + page;
-    // On défini une variable response qui est équivalent aux états dans les classes, on défini également une fonction pour la modifier
+    // On définit une variable response qui est équivalent aux états dans les classes, on défini également une fonction pour la modifier
     // Pour utiliser les états on fait appel au hook useState auquel on passe par défaut un objet qui est stocké dans response
     const [response, setResponse] = useState(
         {

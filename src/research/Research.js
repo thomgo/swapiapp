@@ -17,14 +17,15 @@ class Research extends React.Component {
         }
     }
 
+    // fonction déclenché quand l'utilisateur écrit un ID dans le formulaire et qui lance la requête vers la l'API
     handleChange = (id) => {
         this.requestToSwapi(id)
     }
 
     // Requête qui va chercher un personnage swapi, par défaut le personnage d'id 1, autrement l'id qu'on passe en paramètre
     // Cette fonction  est appelée à la création du composant et chaque fois que le formulaire change(on la passe donc au form)
-    // Ici on utilise une fonction fléchée pour associer this à la classe Swapi et pouvoir appeler setState
-    requestToSwapi= (id) => {
+    // Ici on utilise une fonction fléchée pour associer this à la classe Research et pouvoir appeler setState
+    requestToSwapi= (id=1) => {
         // On construit l'url
         let url = "https://swapi.dev/api/people/" + id + "/";
         // On lance la requête et selon le résultat on met à jour l'état du composant
@@ -49,16 +50,16 @@ class Research extends React.Component {
 
     // Au moment ou le composant est monté (affiché pour la première fois) on requête swapi avec notre méthode sans passer de paramètre
     componentDidMount() {
-        this.requestToSwapi(1);
+        this.requestToSwapi();
     }
 
     // Ici on affiche le formulaire et le personnage dans une structure HTML
-    // On passe au formulaire la méthode pour effectuer la requête qui sera appelée dans une méthode de la classe Selectform
-    // On passe au personnage les éventuels message et données à afficher
+    // On passe au formulaire la méthode à déclencher quand l'utilisateur change sa valeur
+    // On passe au composant de résultat les données de la requête contenues dans l'état
     render() {
         return(
             <div>
-                <h2>Write an id for a character</h2>
+                <h2>Write character's ID</h2>
                 <Selectform onChange={this.handleChange}/>
                 <section className="my-5">
                     <h3>Selected character :</h3>
