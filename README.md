@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Application REACT pour la consommation de l'API SWAPI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Il s'agit d'une application développée dans le cadre de mon poste de formateur en développement web. L'objectif est que les apprenants réalisent à l'aide la librairie REACT JS un client front-end pour exploiter et mettre en forme les données de l'univers de Star Wars fournies par l'API gratuite et ouverte SWAPI (https://swapi.dev/).
 
-## Available Scripts
+Au travers de cet exercice, les étudiants apprennent à :
 
-In the project directory, you can run:
+- Démarrer un projet REACT
+- Utiliser le CLI REACT
+- Découper son projet en composants
+- Utiliser les classes JavaScript
+- Utilisez les hooks REACT
+- Echanger des informations entre composants
+- Utiliser les cycles de vie des composants
+- Gérer son routing en JavaScript à l’aide d’un module
+- Effectuer des requêtes http
+- Gérer l’asynchrone dans son application
+- Comprendre le concept d’API
+- Consommer une API
+- Exploiter des données au format JSON
 
-### `npm start`
+## Consignes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Une association de fan des films StarWars vous a contacté pour réaliser un site de diffusion du savoir autour de la saga. Vous avez de la chance, l’association a déjà développé une API (swapi) qui recense tout ce qu’il y a à savoir sur cet univers.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Votre tâche est de réaliser une application REACT qui grâce à Swapi vous permet d'afficher des informations sur les différents héros, planètes et autres éléments de StarWars. Ces informations seront affichées de manières responsives et visuellement engageantes pour l’utilisateur.
 
-### `npm test`
+**Spécifications fonctionnelles** :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Votre application se composera à minima des deux pages suivantes intégrées dans un template :
 
-### `npm run build`
+- Une page d'accueil qui affiche par défaut les différents types de ressources disponibles (espèces, personnages, véhicules etc…) Les types de ressources sont récupérés depuis l’API via une requête.
+- Une page de recherche qui permet d’effectuer une recherche dynamiquement. La recherche est effectuée à chaque fois que l’utilisateur tape une lettre
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Spécifications techniques** :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Dernière version stable de REACT
+- Usage de l’API Swapi
+- Pour les requêtes http vous êtes libres d’utiliser la librairie de votre choix ou de les faire à la main
+- Utilisation de Bootstrap 5 pour le design de l’interface
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Le rendu se fera via TEAMS, vous devrez déposer avant dimanche soir minuit un fichier txt avec votre nom et prénom contenant le lien vers votre repository.
 
-### `npm run eject`
+**Conseils** :
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+REACT peut être difficile à appréhender quand on débute, ne vous lancez pas tête baissée dans l’application en essayant de tout faire en même temps, cela ne donnera rien de bon. Il est important de gérer votre projet correctement à l’aide des méthodes déjà vues et surtout de vous poser des jalons, c’est-à-dire des objectifs intermédiaires atteignables et facilement débugables au besoin. C’est en réalisant ces objectifs intermédiaires que votre application prendra forme. Voici par exemple une proposition d’organisation indicative :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Découpez la maquette en composants
+- Identifiez les composants du template et créez un dossier par composant du template
+- Créez les fichiers du template avec un code minimal (un paragraphe ou autre pour débuter)
+- Chargez ces fichiers dans le composant d’accueil et vérifiez leur affichage
+- Enrichissez le HTML du template et mettez-le en forme. Votre application ne fait mais commence à ressembler à quelque chose
+- Attaquez-vous aux composants fonctionnels tels que l’accueil
+- Comme précédemment réalisez d’abord un affichage simple pour vérifier leur chargement
+- Si le composant doit gérer des données commencez par les rentrer en dur et les mettre en forme
+- Tentez de requêter l’API et vérifier sa réponse sans l’exploiter. Il est crucial de s’assurer que les données renvoyées correspondent à vos attentes
+- Tentez de remplacer vos données d’essai avec les données que l’API vous a renvoyées
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Pour aller plus loin
 
-## Learn More
+- Une page de détail de ressource accessible en cliquant sur une ressource qui affiche les entrées de la ressource sous forme de liste paginée. En cliquant sur suivant ou précédent on passe à une autre tranche de la liste.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Une page détail de l’entrée accessible quand on clique sur une entrée d’une ressource. Celle affiche les informations du personnage, du véhicule ou autre.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Les éléments sont présentés sous la forme d'une liste et quand l'utilisateur clique sur l'un d'entre eux, il accède à une page de détails où on lui présente toutes les spécificités de l'élément sur lequel il a cliqué.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Par exemple, sur la page d’accueil, si je sélectionne véhicule dans le dropdown, je vois une liste de véhicules s’afficher et si je clique sur un véhicule en particulier j’accède à sa page de description
