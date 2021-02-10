@@ -8,7 +8,7 @@ import Searchresult from "./searchresult/Searchresult";
 class Research extends React.Component {
     constructor(props) {
         super(props);
-        // Stocke les différents états de la requête vers Swapi et le message du composant Character
+        // Stocke les différents états de la requête vers Swapi et le message du composant searchResult
         this.state = {
             data: null,
             error: null,
@@ -17,10 +17,14 @@ class Research extends React.Component {
         }
     }
 
+    handleChange = (id) => {
+        this.requestToSwapi(id)
+    }
+
     // Requête qui va chercher un personnage swapi, par défaut le personnage d'id 1, autrement l'id qu'on passe en paramètre
     // Cette fonction  est appelée à la création du composant et chaque fois que le formulaire change(on la passe donc au form)
     // Ici on utilise une fonction fléchée pour associer this à la classe Swapi et pouvoir appeler setState
-    requestToSwapi= (id=1) => {
+    requestToSwapi= (id) => {
         // On construit l'url
         let url = "https://swapi.dev/api/people/" + id + "/";
         // On lance la requête et selon le résultat on met à jour l'état du composant
@@ -35,9 +39,9 @@ class Research extends React.Component {
         })
         .catch((error) => {
             this.setState({
+                data: null,
                 error: error,
                 isLoaded: true,
-                data: null,
                 message: "Nous n'avons pas réussi à récupérer la ressource, vérifiez que l'id existe"
             });
         })
@@ -45,7 +49,7 @@ class Research extends React.Component {
 
     // Au moment ou le composant est monté (affiché pour la première fois) on requête swapi avec notre méthode sans passer de paramètre
     componentDidMount() {
-        this.requestToSwapi();
+        this.requestToSwapi(1);
     }
 
     // Ici on affiche le formulaire et le personnage dans une structure HTML
@@ -55,10 +59,10 @@ class Research extends React.Component {
         return(
             <div>
                 <h2>Write an id for a character</h2>
-                <Selectform onChange={this.requestToSwapi}/>
+                <Selectform onChange={this.handleChange}/>
                 <section className="my-5">
                     <h3>Selected character :</h3>
-                    <Searchresult message={this.state.message} data={this.state.data}/>
+                    <Searchresult searchResult={this.state}/>
                 </section>
             </div>
         );
